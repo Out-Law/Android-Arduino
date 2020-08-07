@@ -1,4 +1,4 @@
-package com.labawsrh.aws.introscreen;
+package com.vk.app_arduino;
 
 public class ScreenItem {
 

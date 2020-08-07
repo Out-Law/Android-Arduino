@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         BubbleNavigationConstraintView bubbleNavigation = findViewById(R.id.bottom_navigation_view_linear);
 
+        //Значок уведомления возле кнопки на меню
         bubbleNavigation.setBadgeValue(0, "40");
         bubbleNavigation.setBadgeValue(1, null); //invisible badge
         bubbleNavigation.setBadgeValue(2, "7");
