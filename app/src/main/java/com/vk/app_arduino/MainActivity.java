@@ -65,3 +65,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+
+
+
+
+/* ImageButton buttonBackToMainMenu = view.findViewById(R.id.buttonBackToMainMenu);
+        buttonBackToMainMenu.setOnClickListener(view12 -> {
+            FragmentTransaction ft = Objects.requireNonNull(getActivity())
+                    .getSupportFragmentManager().beginTransaction();
+            ft.setCustomAnimations(R.anim.enter_left_to_right, R.anim.exit_left_to_right,
+                    R.anim.enter_right_to_left, R.anim.exit_right_to_left);
+            ft.replace(R.id.MainConstraintLayout, FragmentMain.newInstance()).commit();
+        });
+
+        ImageButton buttonSettings = view.findViewById(R.id.ButtonSettings);
+        buttonSettings.setOnClickListener(view1 -> {
+            FragmentTransaction ft = Objects.requireNonNull(getActivity()).
+                    getSupportFragmentManager().beginTransaction();
+            ft.setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_right_to_left,
+                    R.anim.enter_left_to_right, R.anim.exit_left_to_right);
+            ft.replace(R.id.MainConstraintLayout, FragmentSettingsMenu.newInstance()).commit();
+        });
+        */

@@ -2,33 +2,28 @@ package com.vk.app_arduino;
 
 public class ScreenItem {
 
-    String Title,Description;
+    String Title, Description;
     int ScreenImg;
 
-    public ScreenItem(String title, String description, int screenImg) {
-        Title = title;
-        Description = description;
-        ScreenImg = screenImg;
-    }
 
     public void setTitle(String title) {
-        Title = title;
-    }
-
-    public void setDescription(String description) {
-        Description = description;
-    }
-
-    public void setScreenImg(int screenImg) {
-        ScreenImg = screenImg;
+        this.Title = title;
     }
 
     public String getTitle() {
         return Title;
     }
 
+    public void setDescription(String description) {
+        this.Description = description;
+    }
+
     public String getDescription() {
         return Description;
+    }
+
+    public void setScreenImg(int screenImg) {
+        this.ScreenImg = screenImg;
     }
 
     public int getScreenImg() {
