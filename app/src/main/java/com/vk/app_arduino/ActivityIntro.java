@@ -28,7 +28,7 @@ import java.util.List;
 public class ActivityIntro extends AppCompatActivity {
 
     IntroViewPagerAdapter introViewPagerAdapter ;
-    LinearLayout layoutOnboardingIndicator;
+    //LinearLayout layoutOnboardingIndicator;
     TabLayout tabIndicator;
     Button btnNext;
     int position = 0 ;
@@ -40,14 +40,14 @@ public class ActivityIntro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        layoutOnboardingIndicator = findViewById(R.id.layoutOnboardingIndicator);
+        //layoutOnboardingIndicator = findViewById(R.id.layoutOnboardingIndicator);
 
         setupScreenItems();
 
         ViewPager2 introViewPager = findViewById(R.id.screen_viewpager);
         introViewPager.setAdapter(introViewPagerAdapter);
 
-        setupOnboardingIndicators();
+       // setupOnboardingIndicators();
 
     }
 
@@ -78,7 +78,7 @@ public class ActivityIntro extends AppCompatActivity {
         introViewPagerAdapter = new IntroViewPagerAdapter(screenItems);
     }
 
-    private void setupOnboardingIndicators(){
+    /*private void setupOnboardingIndicators(){
         ImageView[] indicator = new ImageView[introViewPagerAdapter.getItemCount()];
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
@@ -93,5 +93,5 @@ public class ActivityIntro extends AppCompatActivity {
             indicator[i].setLayoutParams(layoutParams);
             layoutOnboardingIndicator.addView(indicator[i]);
         }
-    }
+    }*/
 }
