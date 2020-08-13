@@ -3,16 +3,24 @@ package com.vk.app_arduino;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.gauravk.bubblenavigation.BubbleNavigationConstraintView;
-import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
 import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
+    @SuppressLint({"ResourceType", "SourceLockedOrientationActivity"})
+
     private static final String TAG = MainActivity.class.getSimpleName();
     FragmentManager fragmentManager;
     Fragment fragment = null;
@@ -20,7 +28,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+       /* requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        getSupportFragmentManager().beginTransaction().
+                replace(R.id.MainConstraintLayout, CurrentTasksAtHome.newInstance()).commit();*/
 
         BubbleNavigationConstraintView bubbleNavigation = findViewById(R.id.bottom_navigation_view_linear);
 
@@ -49,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ControlOfTheHouse();
                         break;
                     case 2:
-                        fragment = new HomeStatistics();
+                        fragment = new Settings();
                         break;
                 }
                 if (fragment != null){

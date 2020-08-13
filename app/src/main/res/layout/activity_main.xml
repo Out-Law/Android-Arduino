@@ -30,11 +30,11 @@
             android:layout_height="wrap_content"
             app:bt_active="true"
             app:bt_colorActive="@color/gradient_start_color"
-            app:bt_colorInactive="@color/orange_inactive"
-            app:bt_icon="@drawable/ic_restaurant"
+            app:bt_colorInactive="@color/tab_indicator_gray"
+            app:bt_icon="@drawable/ic_home_outline_28"
             app:bt_padding="12dp"
             app:bt_shape="@drawable/transition_background_drawable_default"
-            app:bt_title="@string/restaurant"
+            app:bt_title="@string/Home"
             app:bt_titlePadding="8dp" />
 
         <com.gauravk.bubblenavigation.BubbleToggleView
@@ -42,11 +42,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:bt_colorActive="@color/gradient_end_color"
-            app:bt_colorInactive="@color/orange_inactive"
-            app:bt_icon="@drawable/ic_room"
+            app:bt_colorInactive="@color/tab_indicator_gray"
+            app:bt_icon="@drawable/ic_services_outline_28"
             app:bt_padding="12dp"
             app:bt_shape="@drawable/transition_background_drawable_default"
-            app:bt_title="@string/room"
+            app:bt_title="@string/Services"
             app:bt_titlePadding="8dp" />
 
         <com.gauravk.bubblenavigation.BubbleToggleView
@@ -54,11 +54,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:bt_colorActive="@color/gradient_end_color"
-            app:bt_colorInactive="@color/orange_inactive"
-            app:bt_icon="@drawable/ic_arrow_forward_black_24dp"
+            app:bt_colorInactive="@color/tab_indicator_gray"
+            app:bt_icon="@drawable/ic_settings_outline_28"
             app:bt_padding="12dp"
             app:bt_shape="@drawable/transition_background_drawable_default"
-            app:bt_title="@string/happy"
+            app:bt_title="@string/Settings"
             app:bt_titlePadding="8dp" />
 
 
