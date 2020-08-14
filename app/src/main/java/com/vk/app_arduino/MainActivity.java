@@ -29,21 +29,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-       /* requestWindowFeature(Window.FEATURE_NO_TITLE);
+       requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        getSupportFragmentManager().beginTransaction().
+        /*getSupportFragmentManager().beginTransaction().
                 replace(R.id.MainConstraintLayout, CurrentTasksAtHome.newInstance()).commit();*/
 
         BubbleNavigationConstraintView bubbleNavigation = findViewById(R.id.bottom_navigation_view_linear);
 
         //Значок уведомления возле кнопки на меню
-        bubbleNavigation.setBadgeValue(0, "40");
+       /* bubbleNavigation.setBadgeValue(0, "40");
         bubbleNavigation.setBadgeValue(1, null); //invisible badge
-        bubbleNavigation.setBadgeValue(2, "7");
+        bubbleNavigation.setBadgeValue(2, "7");*/
 
         //НУжно для того чтобы открыть сразу первый фрагмент
         if(savedInstanceState == null){
