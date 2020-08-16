@@ -37,6 +37,7 @@ public class Settings extends Fragment {
 
         List<settings_cards> cardsSettings = new ArrayList<>();
         cardsSettings.add(new settings_cards("Напоминание", getResources().getDrawable(R.drawable.ic_notifications_28)));
+        cardsSettings.add(new settings_cards("Виджеты", getResources().getDrawable(R.drawable.ic_notifications_28)));
         cardsSettings.add(new settings_cards ("Звук", getResources().getDrawable(R.drawable.ic_notifications_28)));
         cardsSettings.add(new settings_cards("У меня проблема", getResources().getDrawable(R.drawable.ic_notifications_28)));
         cardsSettings.add(new settings_cards("Сбросить прогресс", getResources().getDrawable(R.drawable.ic_notifications_28)));

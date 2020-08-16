@@ -22,26 +22,28 @@
         app:bnc_mode="spread"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        >
 
         <com.gauravk.bubblenavigation.BubbleToggleView
             android:id="@+id/c_item_rest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:bt_active="true"
-            app:bt_colorActive="@color/gradient_start_color"
+            app:bt_colorActive="#FFFFFF"
             app:bt_colorInactive="@color/tab_indicator_gray"
             app:bt_icon="@drawable/ic_home_outline_28"
             app:bt_padding="12dp"
             app:bt_shape="@drawable/transition_background_drawable_default"
             app:bt_title="@string/Home"
-            app:bt_titlePadding="8dp" />
+            app:bt_titlePadding="8dp"
+            />
 
         <com.gauravk.bubblenavigation.BubbleToggleView
             android:id="@+id/c_item_room"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:bt_colorActive="@color/gradient_end_color"
+            app:bt_colorActive="#FFFFFF"
             app:bt_colorInactive="@color/tab_indicator_gray"
             app:bt_icon="@drawable/ic_services_outline_28"
             app:bt_padding="12dp"
@@ -53,7 +55,7 @@
             android:id="@+id/c_item_happy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:bt_colorActive="@color/gradient_end_color"
+            app:bt_colorActive="#FFFFFF"
             app:bt_colorInactive="@color/tab_indicator_gray"
             app:bt_icon="@drawable/ic_settings_outline_28"
             app:bt_padding="12dp"

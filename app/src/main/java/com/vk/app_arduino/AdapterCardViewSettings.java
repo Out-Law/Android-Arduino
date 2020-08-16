@@ -46,16 +46,28 @@ class AdapterCardViewSettings extends RecyclerView.Adapter<AdapterCardViewSettin
         holder.itemView.setOnClickListener(view -> {
             switch(cards.get(position).getText()) {
                 case "Напоминание":
-                    dialog.setContentView(R.layout.fragment_notification_settings);
+                    dialog.setContentView(R.layout.dialog_notification_settings);
+                    dialog.findViewById(R.id.OK_button).setOnClickListener(v -> dialog.dismiss());
+                    dialog.findViewById(R.id.Cancle_button).setOnClickListener(v -> dialog.dismiss());
+                    dialog.show();
+                    break;
+                case "Виджеты":
+                    dialog.setContentView(R.layout.dialog_widget);
                     dialog.findViewById(R.id.OK_button).setOnClickListener(v -> dialog.dismiss());
                     dialog.findViewById(R.id.Cancle_button).setOnClickListener(v -> dialog.dismiss());
                     dialog.show();
                     break;
                 case "Звук":
-
+                    dialog.setContentView(R.layout.dialog_sound);
+                    dialog.findViewById(R.id.OK_button).setOnClickListener(v -> dialog.dismiss());
+                    dialog.findViewById(R.id.Cancle_button).setOnClickListener(v -> dialog.dismiss());
+                    dialog.show();
                     break;
                 case "У меня проблема":
-
+                    dialog.setContentView(R.layout.dialog_problems);
+                    dialog.findViewById(R.id.OK_button).setOnClickListener(v -> dialog.dismiss());
+                    dialog.findViewById(R.id.Cancle_button).setOnClickListener(v -> dialog.dismiss());
+                    dialog.show();
                     break;
                 case "Сбросить прогресс":
                     dialog.setContentView(R.layout.dialog_reset_profile);
@@ -67,7 +79,10 @@ class AdapterCardViewSettings extends RecyclerView.Adapter<AdapterCardViewSettin
 
                     break;
                 case "О Разработчиках":
-
+                    dialog.setContentView(R.layout.dialog_developers);
+                    dialog.findViewById(R.id.OK_button).setOnClickListener(v -> dialog.dismiss());
+                    dialog.findViewById(R.id.Cancle_button).setOnClickListener(v -> dialog.dismiss());
+                    dialog.show();
                     break;
             }
         });
