@@ -28,4 +28,18 @@
     <color name="tab_indicator_gray">#c0c0c0</color>
     <color name="intro_title_color">#000000</color>
     <color name="intro_description_color">#656565</color>
+
+    <color name="color_menu_1">#82B1FF</color>
+
+    <color name="bg_login">#26AE90</color>
+    <color name="bg_register">#2E3237</color>
+    <color name="bg_main">#428bca</color>
+    <color name="input_login">#222222</color>
+    <color name="input_login_hint">#999999</color>
+    <color name="input_register">#888888</color>
+    <color name="input_register_bg">#3b4148</color>
+    <color name="input_register_hint">#5e6266</color>
+    <color name="btn_login">#26ae90</color>
+    <color name="btn_login_bg">#ECEEF1</color>
+    <color name="btn_logut_bg">#FF6861</color>
 </resources>
