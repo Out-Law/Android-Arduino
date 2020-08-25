@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "230381965367",
+    "firebase_url": "https://smart-house-b09ae.firebaseio.com",
+    "project_id": "smart-house-b09ae",
+    "storage_bucket": "smart-house-b09ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230381965367:android:ae6f107b9bfb5807482fb2",
+        "android_client_info": {
+          "package_name": "com.vk.app_arduino"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "230381965367-3jqa9h32v3rg850bs9a1ipjer7gtkb1t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vk.app_arduino",
+            "certificate_hash": "01663f2d5c0e82457301985d63c5ada2d425f373"
+          }
+        },
+        {
+          "client_id": "230381965367-297g7aoucit1r3fl7f86p2nfhps3ojbo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV_ujJhVDx55g1wA0gSU6hR-6iuueeYFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "230381965367-297g7aoucit1r3fl7f86p2nfhps3ojbo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
