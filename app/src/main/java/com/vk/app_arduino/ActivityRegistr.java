@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -18,6 +19,8 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +32,8 @@ public class ActivityRegistr extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private final int RC_SIGN_IN = 0;
     private FirebaseAuth mAuth;
+
+    TextInputLayout inputEditText_two;
 
     // [START on_start_check_user]
     @Override
@@ -62,6 +67,13 @@ public class ActivityRegistr extends AppCompatActivity {
                 signIn();
             }
         });
+
+        findViewById(R.id.button_registr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Registr();
+            }
+        });
     }
 
     private void createRequest() {
@@ -73,6 +85,19 @@ public class ActivityRegistr extends AppCompatActivity {
 
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+    }
+
+    private void Registr() {
+        inputEditText_two = (TextInputLayout) findViewById(R.id.password_two);
+        inputEditText_two.setVisibility(View.VISIBLE);
+/*
+        // Инициализируем компонент 
+        TextView textView = findViewById(R.id.textView);
+// задаём текст
+        textView.setText("Hello Kitty!");
+// или с использованием текстовых ресурсов
+        textView.setText(R.string.hello);
+ */
     }
 
     private void signIn() {
