@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class CurrentTasksAtHome extends Fragment {
 
     ChartProgressBar mChart;
+    ChartProgressBar mChart_two;
 
     public static CurrentTasksAtHome newInstance(){
         return new CurrentTasksAtHome();
@@ -61,7 +62,7 @@ public class CurrentTasksAtHome extends Fragment {
         mChart.build();
         mChart.setOnBarClickedListener(index -> Toast.makeText(getActivity(), String.valueOf(index), Toast.LENGTH_SHORT).show());
         mChart.disableBar(dataList.size());
-        
+
         return view;
     }
 }

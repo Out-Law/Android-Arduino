@@ -21,25 +21,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/ButtonSettings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_notifications_28"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:ignore="ContentDescription" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewPeopl"
                 android:layout_width="match_parent"
@@ -53,7 +34,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#1665C1">
+                        android:background="@color/colorPrimary">
 
 
                         <LinearLayout
@@ -161,7 +142,20 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#1665C1">
+                    android:background="@color/colorPrimary">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="Температура"
+                        android:textColor="@color/bar_title_selected_color"
+                        android:textSize="24sp" />
 
                     <com.hadiidbouk.charts.ChartProgressBar
                         android:id="@+id/ChartProgressBar"
@@ -175,20 +169,20 @@
                         app:hdBarRadius="10dp"
                         app:hdMaxValue="10"
                         app:hdEmptyColor="@color/empty"
-                        app:hdProgressColor="@color/progress"
-                        app:hdProgressClickColor="@color/progress_click"
-                        app:hdPinBackgroundColor="@color/pin_background"
+                        app:hdProgressColor="@color/common_google_signin_btn_text_light_pressed"
+                        app:hdProgressClickColor="@color/default_badge_background_color"
+                        app:hdPinBackgroundColor="@color/default_inactive_color"
                         app:hdPinTextColor="@color/pin_text"
                         app:hdPinPaddingBottom="5dp"
-                        app:hdBarTitleColor="@color/bar_title_color"
+                        app:hdBarTitleColor="@color/common_google_signin_btn_text_dark_pressed"
                         app:hdBarTitleTxtSize="12sp"
                         app:hdPinTxtSize="17sp"
                         app:hdPinMarginBottom="45dp"
                         app:hdPinMarginEnd="22dp"
                         app:hdBarTitleMarginTop="9dp"
                         app:hdPinDrawable="@drawable/ic_pin"
-                        app:hdProgressDisableColor="@color/progress_disable"
-                        app:hdBarTitleSelectedColor="@color/bar_title_selected_color"
+                        app:hdProgressDisableColor="@color/default_inactive_color"
+                        app:hdBarTitleSelectedColor="@color/bg_register"
                         app:hdBarCanBeToggle="true"/>
 
                     <LinearLayout
@@ -196,18 +190,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ChartProgressBar"
                         android:layout_marginTop="40dp">
-                        <Button
-                            android:id="@+id/BtnClear"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="1"/>
-                        <Button
-                            android:id="@+id/BtnReset"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="2"/>
+
                     </LinearLayout>
                  </RelativeLayout>
             </androidx.cardview.widget.CardView>
