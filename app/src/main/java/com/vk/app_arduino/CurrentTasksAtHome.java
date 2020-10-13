@@ -5,21 +5,26 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.biansemao.widget.ThermometerView;
 import com.hadiidbouk.charts.BarData;
 import com.hadiidbouk.charts.ChartProgressBar;
 
 
 
 import java.util.ArrayList;
+import java.util.Random;
 
-public class CurrentTasksAtHome extends Fragment {
+public class CurrentTasksAtHome<view> extends Fragment {
 
     ChartProgressBar mChart;
     ChartProgressBar mChart_two;
+    private ThermometerView thermometerTv;
 
     public static CurrentTasksAtHome newInstance(){
         return new CurrentTasksAtHome();
@@ -62,6 +67,24 @@ public class CurrentTasksAtHome extends Fragment {
         mChart.build();
         mChart.setOnBarClickedListener(index -> Toast.makeText(getActivity(), String.valueOf(index), Toast.LENGTH_SHORT).show());
         mChart.disableBar(dataList.size());
+
+
+        thermometerTv = view.findViewById(R.id.tv_thermometer);
+
+        view.findViewById(R.id.btn_anim).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float value = new Random().nextFloat() * 7 + 35;
+                thermometerTv.setValueAndStartAnim(value);
+            }
+        });
+        view.findViewById(R.id.btn_operate).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float value = new Random().nextFloat() * 7 + 35;
+                thermometerTv.setCurValue(value);
+            }
+        });
 
         return view;
     }

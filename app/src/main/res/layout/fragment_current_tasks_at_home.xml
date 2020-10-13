@@ -24,7 +24,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewPeopl"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="700dp"
                 android:layout_margin="4dp"
                 app:cardBackgroundColor="@color/orange_inactive"
                 app:cardCornerRadius="12dp"
@@ -36,94 +36,49 @@
                         android:layout_height="match_parent"
                         android:background="@color/colorPrimary">
 
-
                         <LinearLayout
                             android:id="@+id/linearLayout2"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="30dp"
+                            android:layout_height="700dp"
+                            android:layout_centerHorizontal="true"
                             android:layout_marginTop="16dp"
                             android:gravity="center"
-                            android:layout_centerHorizontal="true">
+                            android:orientation="vertical">
 
-                            <ImageView
-                                android:tint="#FFF4375F"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/circle"
-                                android:id="@+id/imageView3"/>
-
-                            <TextView
-                                android:text="Watch:"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/textView4"
-                                android:textColor="@android:color/white"
-                                android:alpha=".5"
-                                android:layout_marginLeft="6dp"/>
-
-                            <TextView
-                                android:text="18"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@android:color/white"
-                                android:textStyle="normal|bold"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="4dp"/>
-
-                            <ImageView
-                                android:tint="#FFD1005B"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/circle"
-                                android:id="@+id/imageView2"/>
-
-                            <TextView
-                                android:text="Forks:"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/textView3"
-                                android:textColor="@android:color/white"
-                                android:alpha=".5"
-                                android:layout_marginLeft="6dp"/>
-
-                            <TextView
-                                android:text="91"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@android:color/white"
-                                android:textStyle="normal|bold"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="4dp"/>
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:tint="#FF72095A"
-                                app:srcCompat="@drawable/circle"
-                                android:layout_alignParentTop="true"
-                                android:layout_toRightOf="@+id/slimChart"
-                                android:layout_toEndOf="@+id/slimChart"
-                                android:id="@+id/imageView"/>
-
-                            <TextView
-                                android:text="Stars"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/textView2"
-                                android:textColor="@android:color/white"
-                                android:alpha=".5"
-                                android:layout_marginLeft="6dp"/>
-
-                            <TextView
-                                android:text="621"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@android:color/white"
-                                android:textStyle="normal|bold"
-                                android:layout_marginLeft="4dp"/>
+                            <com.biansemao.widget.ThermometerView
+                                android:id="@+id/tv_thermometer"
+                                android:layout_width="match_parent"
+                                android:layout_height="500dp"
+                                android:layout_margin="60dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp" />
 
                         </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/btn_anim"
+                                    android:layout_width="150dp"
+                                    android:layout_height="50dp"
+                                    android:gravity="center"
+                                    android:text="UP"
+                                    android:textColor="@color/bg_register" />
+
+                                <Button
+                                    android:id="@+id/btn_operate"
+                                    android:layout_width="150dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:gravity="center"
+                                    android:text="Down"
+                                    android:textColor="@color/bg_register" />
+                            </LinearLayout>
 
                     </RelativeLayout>
 
