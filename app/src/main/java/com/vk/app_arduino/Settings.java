@@ -41,7 +41,6 @@ public class Settings extends Fragment {
         cardsSettings.add(new settings_cards ("Звук", getResources().getDrawable(R.drawable.ic_notifications_28)));
         cardsSettings.add(new settings_cards("У меня проблема", getResources().getDrawable(R.drawable.ic_notifications_28)));
         cardsSettings.add(new settings_cards("Сбросить прогресс", getResources().getDrawable(R.drawable.ic_notifications_28)));
-        cardsSettings.add(new settings_cards("Регистрация/Авторизация",getResources().getDrawable(R.drawable.ic_notifications_28)));
         cardsSettings.add(new settings_cards("О Разработчиках",getResources().getDrawable(R.drawable.ic_share_external_outline_28)));
 
         recycleViewSettings.setAdapter(new AdapterCardViewSettings(getContext(), cardsSettings));

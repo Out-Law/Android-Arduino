@@ -53,20 +53,20 @@ class AdapterCardViewSettings extends RecyclerView.Adapter<AdapterCardViewSettin
                     break;
                 case "Виджеты":
                     dialog.setContentView(R.layout.dialog_widget);
-                    dialog.findViewById(R.id.OK_button).setOnClickListener(v -> dialog.dismiss());
-                    dialog.findViewById(R.id.Cancle_button).setOnClickListener(v -> dialog.dismiss());
+                    dialog.findViewById(R.id.button3).setOnClickListener(v -> dialog.dismiss());
+                    dialog.findViewById(R.id.button4).setOnClickListener(v -> dialog.dismiss());
                     dialog.show();
                     break;
                 case "Звук":
                     dialog.setContentView(R.layout.dialog_sound);
-                    dialog.findViewById(R.id.OK_button).setOnClickListener(v -> dialog.dismiss());
-                    dialog.findViewById(R.id.Cancle_button).setOnClickListener(v -> dialog.dismiss());
+                    dialog.findViewById(R.id.button3).setOnClickListener(v -> dialog.dismiss());
+                    dialog.findViewById(R.id.button4).setOnClickListener(v -> dialog.dismiss());
                     dialog.show();
                     break;
                 case "У меня проблема":
                     dialog.setContentView(R.layout.dialog_problems);
-                    dialog.findViewById(R.id.OK_button).setOnClickListener(v -> dialog.dismiss());
-                    dialog.findViewById(R.id.Cancle_button).setOnClickListener(v -> dialog.dismiss());
+                    dialog.findViewById(R.id.button3).setOnClickListener(v -> dialog.dismiss());
+                    dialog.findViewById(R.id.button4).setOnClickListener(v -> dialog.dismiss());
                     dialog.show();
                     break;
                 case "Сбросить прогресс":
@@ -75,13 +75,10 @@ class AdapterCardViewSettings extends RecyclerView.Adapter<AdapterCardViewSettin
                     dialog.findViewById(R.id.button4).setOnClickListener(v -> dialog.dismiss());
                     dialog.show();
                     break;
-                case "Регистрация/Авторизация":
-
-                    break;
                 case "О Разработчиках":
                     dialog.setContentView(R.layout.dialog_developers);
-                    dialog.findViewById(R.id.OK_button).setOnClickListener(v -> dialog.dismiss());
-                    dialog.findViewById(R.id.Cancle_button).setOnClickListener(v -> dialog.dismiss());
+                    dialog.findViewById(R.id.button3).setOnClickListener(v -> dialog.dismiss());
+                    dialog.findViewById(R.id.button4).setOnClickListener(v -> dialog.dismiss());
                     dialog.show();
                     break;
             }
