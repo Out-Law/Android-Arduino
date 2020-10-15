@@ -1,69 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/MainConstraintLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    tools:context=".MainActivity"
+    android:id="@+id/osnova"
+    android:background="#e7e8ea"
+    android:contextClickable="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textInfo"
+        android:textSize="22dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:visibility="visible" />
+
+    <ListView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/pairedlist"
+        android:layout_below="@+id/textInfo"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+
+        android:layout_marginLeft="20dp"
+        android:visibility="visible" />
 
     <FrameLayout
-        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#e7e7e5"
+        android:id="@+id/ButPanel"
+        android:visibility="gone">
 
-    <com.gauravk.bubblenavigation.BubbleNavigationConstraintView
-        android:id="@+id/bottom_navigation_view_linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="8dp"
-        android:padding="10dp"
-        app:bnc_mode="spread"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        >
 
-        <com.gauravk.bubblenavigation.BubbleToggleView
-            android:id="@+id/c_item_rest"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:bt_active="true"
-            app:bt_colorActive="#FFFFFF"
-            app:bt_colorInactive="@color/tab_indicator_gray"
-            app:bt_icon="@drawable/ic_home_outline_28"
-            app:bt_padding="12dp"
-            app:bt_shape="@drawable/transition_background_drawable_default"
-            app:bt_title="@string/Home"
-            app:bt_titlePadding="8dp"
-            />
+            android:text="Tin"
+            android:id="@+id/Tin"
+            android:layout_gravity="center_horizontal|top"
+            android:textSize="30dp"
+            android:layout_marginTop="30dp" />
 
-        <com.gauravk.bubblenavigation.BubbleToggleView
-            android:id="@+id/c_item_room"
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:bt_colorActive="#FFFFFF"
-            app:bt_colorInactive="@color/tab_indicator_gray"
-            app:bt_icon="@drawable/ic_services_outline_28"
-            app:bt_padding="12dp"
-            app:bt_shape="@drawable/transition_background_drawable_default"
-            app:bt_title="@string/Services"
-            app:bt_titlePadding="8dp" />
+            android:text="Hin"
+            android:id="@+id/Hin"
+            android:layout_gravity="center_horizontal|top"
+            android:textSize="30dp"
+            android:layout_marginTop="110dp" />
 
-        <com.gauravk.bubblenavigation.BubbleToggleView
-            android:id="@+id/c_item_happy"
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:bt_colorActive="#FFFFFF"
-            app:bt_colorInactive="@color/tab_indicator_gray"
-            app:bt_icon="@drawable/ic_settings_outline_28"
-            app:bt_padding="12dp"
-            app:bt_shape="@drawable/transition_background_drawable_default"
-            app:bt_title="@string/Settings"
-            app:bt_titlePadding="8dp" />
+            android:text="Tout"
+            android:id="@+id/Tout"
+            android:layout_gravity="center_horizontal|top"
+            android:textSize="30dp"
+            android:layout_marginTop="190dp" />
 
 
-    </com.gauravk.bubblenavigation.BubbleNavigationConstraintView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hout"
+            android:id="@+id/Hout"
+            android:layout_gravity="center_horizontal|top"
+            android:textSize="30dp"
+            android:layout_marginTop="270dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tin1"
+            android:id="@+id/Tin1"
+            android:layout_gravity="center_horizontal|top"
+            android:textSize="30dp"
+            android:layout_marginTop="350dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tin2"
+            android:id="@+id/Tin2"
+            android:layout_gravity="center_horizontal|top"
+            android:textSize="30dp"
+            android:layout_marginTop="430dp" />
+
+    </FrameLayout>
+
+</RelativeLayout>

@@ -6,101 +6,379 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gauravk.bubblenavigation.BubbleNavigationConstraintView;
 import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TimeZone;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
+import static android.text.format.DateFormat.*;
 
 public class MainActivity extends AppCompatActivity {
-    @SuppressLint({"ResourceType", "SourceLockedOrientationActivity"})
 
     private static final String TAG = MainActivity.class.getSimpleName();
     FragmentManager fragmentManager;
     Fragment fragment = null;
+
+    private static final int REQUEST_ENABLE_BT = 1;
+
+    BluetoothAdapter bluetoothAdapter;
+
+    ArrayList<String> pairedDeviceArrayList;
+
+    ListView listViewPairedDevice;
+    FrameLayout ButPanel;
+
+    ArrayAdapter<String> pairedDeviceAdapter;
+    private UUID myUUID;
+
+    ThreadConnectBTdevice myThreadConnectBTdevice;
+    ThreadConnected myThreadConnected;
+
+    private StringBuilder sb = new StringBuilder();
+
+    public TextView textInfo;
+
+    public TextView Hin;
+    public TextView Tin;
+    public TextView Hout;
+    public TextView Tout;
+    public TextView Tin1;
+    public TextView Tin2;
+
+    public Handler hand = new Handler(new Handler.Callback() {
+        public boolean handleMessage(Message msg) {
+            sb.append(new String((byte[]) msg.obj, 0, msg.arg1));
+            int endOfLineIndex = sb.indexOf("\r\n");
+
+            if (endOfLineIndex > 0) {
+
+                String sbprint = sb.substring(0, endOfLineIndex);
+                sb.delete(0, sb.length());
+                String[] paket = sbprint.split(" ");
+                runOnUiThread(new Runnable() { // Вывод данных
+                    @Override
+                    public void run() {
+
+                        if (paket.length == 8 && paket[0].equals("A") && paket[7].equals("Z")) {
+                            Tin.setText(paket[1] + " C");
+                            Hin.setText(paket[2] + " %");
+                            Tout.setText(paket[3] + " C");
+                            Hout.setText(paket[4] + " %");
+                            Tin1.setText(paket[5] + " я ебать рад");
+                            Tin2.setText(paket[6] + " прям очень");
+                        }
+                    }
+                });
+            }
+            return true;
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-      /* requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        final String UUID_STRING_WELL_KNOWN_SPP = "00001101-0000-1000-8000-00805F9B34FB";
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-*/
-        /*getSupportFragmentManager().beginTransaction().
-                replace(R.id.MainConstraintLayout, CurrentTasksAtHome.newInstance()).commit();*/
+        textInfo = (TextView)findViewById(R.id.textInfo);
+        Tin = (TextView) findViewById(R.id.Tin);
+        Hin = (TextView) findViewById(R.id.Hin);
+        Tout = (TextView) findViewById(R.id.Tout);
+        Hout = (TextView) findViewById(R.id.Hout);
+        Tin1 = (TextView) findViewById(R.id.Tin1);
+        Tin2 = (TextView) findViewById(R.id.Tin2);
 
-        BubbleNavigationConstraintView bubbleNavigation = findViewById(R.id.bottom_navigation_view_linear);
+        listViewPairedDevice = (ListView)findViewById(R.id.pairedlist);
 
-        //Значок уведомления возле кнопки на меню
-       /* bubbleNavigation.setBadgeValue(0, "40");
-        bubbleNavigation.setBadgeValue(1, null); //invisible badge
-        bubbleNavigation.setBadgeValue(2, "7");*/
+        ButPanel = (FrameLayout) findViewById(R.id.ButPanel);
 
-        //НУжно для того чтобы открыть сразу первый фрагмент
-        if(savedInstanceState == null){
-            fragmentManager = getSupportFragmentManager();
-            CurrentTasksAtHome currentTasksAtHome = new CurrentTasksAtHome();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, currentTasksAtHome)
-                    .commit();
+        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)){
+            Toast.makeText(this, "BLUETOOTH NOT support", Toast.LENGTH_LONG).show();
+            finish();
+            return;
         }
 
-        bubbleNavigation.setNavigationChangeListener(new BubbleNavigationChangeListener() {
-            @Override
-            public void onNavigationChanged(View view, int position) {
-                switch (position){
-                    case 0:
-                        fragment = new CurrentTasksAtHome();
-                        break;
-                    case 1:
-                        fragment = new ControlOfTheHouse();
-                        break;
-                    case 2:
-                        fragment = new Settings();
-                        break;
+        myUUID = UUID.fromString(UUID_STRING_WELL_KNOWN_SPP);
+
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        if (bluetoothAdapter == null) {
+            Toast.makeText(this, "Bluetooth is not supported on this hardware platform", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
+
+        String stInfo = bluetoothAdapter.getName() + " " + bluetoothAdapter.getAddress();
+        textInfo.setText(String.format("Это устройство: %s", stInfo));
+
+    } // END onCreate
+
+
+    @Override
+    protected void onStart() { // Запрос на включение Bluetooth
+        super.onStart();
+
+        if (!bluetoothAdapter.isEnabled()) {
+            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+        }
+
+        setup();
+    }
+
+    private void setup() { // Создание списка сопряжённых Bluetooth-устройств
+
+        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+
+        if (pairedDevices.size() > 0) { // Если есть сопряжённые устройства
+
+            pairedDeviceArrayList = new ArrayList<>();
+
+            for (BluetoothDevice device : pairedDevices) { // Добавляем сопряжённые устройства - Имя + MAC-адресс
+                pairedDeviceArrayList.add(device.getName() + "\n" + device.getAddress());
+            }
+
+            pairedDeviceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, pairedDeviceArrayList);
+            listViewPairedDevice.setAdapter(pairedDeviceAdapter);
+
+            listViewPairedDevice.setOnItemClickListener(new AdapterView.OnItemClickListener() { // Клик по нужному устройству
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    listViewPairedDevice.setVisibility(View.GONE); // После клика скрываем список
+
+                    String  itemValue = (String) listViewPairedDevice.getItemAtPosition(position);
+                    String MAC = itemValue.substring(itemValue.length() - 17); // Вычленяем MAC-адрес
+
+                    BluetoothDevice device2 = bluetoothAdapter.getRemoteDevice(MAC);
+
+                    myThreadConnectBTdevice = new ThreadConnectBTdevice(device2);
+                    myThreadConnectBTdevice.start();  // Запускаем поток для подключения Bluetooth
                 }
-                if (fragment != null){
-                    fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container, fragment)
-                            .commit();
+            });
+        }
+    }
+
+    @Override
+    protected void onDestroy() { // Закрытие приложения
+        super.onDestroy();
+        if(myThreadConnectBTdevice!=null) myThreadConnectBTdevice.cancel();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_ENABLE_BT) { // Если разрешили включить Bluetooth, тогда void setup()
+
+            if (resultCode == Activity.RESULT_OK) {
+                setup();
+            } else { // Если не разрешили, тогда закрываем приложение
+
+                Toast.makeText(this, "BlueTooth не включён", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+
+
+    private class ThreadConnectBTdevice extends Thread { // Поток для коннекта с Bluetooth
+
+        private BluetoothSocket bluetoothSocket = null;
+
+        private ThreadConnectBTdevice(BluetoothDevice device) {
+
+            try {
+                bluetoothSocket = device.createRfcommSocketToServiceRecord(myUUID);
+            }
+
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        @Override
+        public void run() { // Коннект
+
+            boolean success = false;
+
+            try {
+                bluetoothSocket.connect();
+                success = true;
+            }
+
+            catch (IOException e) {
+                e.printStackTrace();
+
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        Toast.makeText(MainActivity.this,
+                                "Нет коннекта, проверьте " +
+                                        "Bluetooth-устройство с которым хотите соединица!",
+                                Toast.LENGTH_LONG).show();
+                        listViewPairedDevice.setVisibility(View.VISIBLE);
+                    }
+                });
+
+                try {
+                    bluetoothSocket.close();
                 }
-                else{
-                    Log.e(TAG, "Error in creating fragment");
+
+                catch (IOException e1) {
+
+                    e1.printStackTrace();
                 }
             }
-        });
+
+            if(success) {  // Если законнектились, тогда открываем панель
+                // с кнопками и запускаем поток приёма и отправки данных
+
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        ButPanel.setVisibility(View.VISIBLE); // открываем панель с кнопками
+                    }
+                });
+
+                myThreadConnected = new ThreadConnected(bluetoothSocket);
+                myThreadConnected.start(); // запуск потока приёма и отправки данных
+            }
+        }
+
+
+        public void cancel() {
+
+            Toast.makeText(getApplicationContext(),
+                    "Close - BluetoothSocket", Toast.LENGTH_LONG).show();
+
+            try {
+                bluetoothSocket.close();
+            }
+
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    } // END ThreadConnectBTdevice:
+
+
+
+    private class ThreadConnected extends Thread {    // Поток - приём и отправка данных
+
+        final BluetoothSocket connectedBluetoothSocket;
+        private final InputStream connectedInputStream;
+
+        public ThreadConnected(BluetoothSocket socket) {
+            connectedBluetoothSocket = socket;
+            InputStream in = null;
+
+            try {
+                in = socket.getInputStream();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            connectedInputStream = in;
+        }
+
+
+        @Override
+        public void run() {
+
+            while (true) {
+                try {
+                    byte[] buffer = new byte[2];
+                    MainActivity.this.hand.obtainMessage(0, this.connectedInputStream.read(buffer), 0, buffer).sendToTarget();
+                } catch (IOException e) {
+                    return;
+                }
+            }
+        }
+
     }
-}
 
 
 
+   /* BubbleNavigationConstraintView bubbleNavigation = findViewById(R.id.bottom_navigation_view_linear);
 
-/* ImageButton buttonBackToMainMenu = view.findViewById(R.id.buttonBackToMainMenu);
-        buttonBackToMainMenu.setOnClickListener(view12 -> {
-            FragmentTransaction ft = Objects.requireNonNull(getActivity())
-                    .getSupportFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.anim.enter_left_to_right, R.anim.exit_left_to_right,
-                    R.anim.enter_right_to_left, R.anim.exit_right_to_left);
-            ft.replace(R.id.MainConstraintLayout, FragmentMain.newInstance()).commit();
-        });
+    //Значок уведомления возле кнопки на меню
+       /* bubbleNavigation.setBadgeValue(0, "40");
+        bubbleNavigation.setBadgeValue(1, null); //invisible badge
+        bubbleNavigation.setBadgeValue(2, "7");
 
-        ImageButton buttonSettings = view.findViewById(R.id.ButtonSettings);
-        buttonSettings.setOnClickListener(view1 -> {
-            FragmentTransaction ft = Objects.requireNonNull(getActivity()).
-                    getSupportFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_right_to_left,
-                    R.anim.enter_left_to_right, R.anim.exit_left_to_right);
-            ft.replace(R.id.MainConstraintLayout, FragmentSettingsMenu.newInstance()).commit();
-        });
-        */
+    //НУжно для того чтобы открыть сразу первый фрагмент
+        if(savedInstanceState == null){
+        fragmentManager = getSupportFragmentManager();
+        CurrentTasksAtHome currentTasksAtHome = new CurrentTasksAtHome();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, currentTasksAtHome)
+                .commit();
+    }
+
+        bubbleNavigation.setNavigationChangeListener(new BubbleNavigationChangeListener() {
+        @Override
+        public void onNavigationChanged(View view, int position) {
+            switch (position){
+                case 0:
+                    fragment = new CurrentTasksAtHome();
+                    break;
+                case 1:
+                    fragment = new ControlOfTheHouse();
+                    break;
+                case 2:
+                    fragment = new Settings();
+                    break;
+            }
+            if (fragment != null){
+                fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .commit();
+            }
+            else{
+                Log.e(TAG, "Error in creating fragment");
+            }
+        }
+    });*/
+} // END
