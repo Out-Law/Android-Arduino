@@ -11,15 +11,29 @@
     android:id="@+id/dialog_notification">
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Включите напоминание о занятиях."
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold|italic" />
+        android:id="@+id/textViewForPrevDia1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="Температура вышла за диапозон комфорта!"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/linLayoutForPrevDia2"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/textViewForPrevDia2"
+            android:layout_width="222dp"
+            android:layout_height="122dp"
+            android:gravity="center"
+            android:text="комфортная температура для человека дома От 20 до 25°C." />
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,20 +46,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFFFFF"
-            android:text="ОК"
+            android:text="Я принял к сведенью"
             android:textColor="@color/design_default_color_primary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/Cancle_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:backgroundTint="#FFFFFF"
-            android:text="Отменить"
-            android:textColor="@color/design_default_color_primary"
-            app:layout_constraintEnd_toStartOf="@+id/OK_button"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,100 +1,297 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".CurrentTasksAtHome">
 
-    tools:context=".MainActivity"
-    android:id="@+id/osnova"
-    android:background="#e7e8ea"
-    android:contextClickable="true">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textInfo"
-        android:textSize="22dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:visibility="visible" />
-
-    <ListView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/pairedlist"
-        android:layout_below="@+id/textInfo"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp"
-
-        android:layout_marginLeft="20dp"
-        android:visibility="visible" />
-
-    <FrameLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewBB"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#e7e7e5"
-        android:id="@+id/ButPanel"
-        android:visibility="gone">
+        android:layout_height="400dp"
+        android:layout_margin="4dp"
+        app:cardBackgroundColor="#ffff"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="7dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contextClickable="true"
+            android:id="@+id/osnova"
+            android:background="@color/grey_bg_light">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textInfo"
+                android:textSize="22dp"
+                android:visibility="visible" />
+
+            <ListView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/pairedlist"
+                android:layout_below="@+id/textInfo"
+                android:layout_alignParentStart="true"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:id="@+id/ScrolViewSettings"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible" >
 
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tin"
-            android:id="@+id/Tin"
-            android:layout_gravity="center_horizontal|top"
-            android:textSize="30dp"
-            android:layout_marginTop="30dp" />
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewPeople"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_margin="4dp"
+                app:cardBackgroundColor="#ffff"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="7dp"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="Температура"
+                        android:textColor="@color/bar_title_selected_color"
+                        android:textSize="24sp" />
+
+                    <com.hadiidbouk.charts.ChartProgressBar
+                        android:id="@+id/ChartProgressBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        app:hdBarCanBeClick="true"
+                        app:hdBarCanBeToggle="true"
+                        app:hdBarHeight="170dp"
+                        app:hdBarRadius="10dp"
+                        app:hdBarTitleColor="@color/common_google_signin_btn_text_dark_pressed"
+                        app:hdBarTitleMarginTop="9dp"
+                        app:hdBarTitleSelectedColor="@color/bg_register"
+                        app:hdBarTitleTxtSize="12sp"
+                        app:hdBarWidth="7dp"
+                        app:hdEmptyColor="@color/empty"
+                        app:hdMaxValue="10"
+                        app:hdPinBackgroundColor="@color/default_inactive_color"
+                        app:hdPinDrawable="@drawable/ic_pin"
+                        app:hdPinMarginBottom="45dp"
+                        app:hdPinMarginEnd="22dp"
+                        app:hdPinPaddingBottom="5dp"
+                        app:hdPinTextColor="@color/pin_text"
+                        app:hdPinTxtSize="17sp"
+                        app:hdProgressClickColor="@color/default_badge_background_color"
+                        app:hdProgressColor="@color/common_google_signin_btn_text_light_pressed"
+                        app:hdProgressDisableColor="@color/default_inactive_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ChartProgressBar"
+                        android:layout_marginTop="40dp">
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewPeopl"
+                android:layout_width="match_parent"
+                android:layout_height="700dp"
+                android:layout_margin="4dp"
+                app:cardBackgroundColor="@color/orange_inactive"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="7dp"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="600dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.biansemao.widget.ThermometerView
+                            android:id="@+id/tv_thermometer"
+                            android:layout_width="match_parent"
+                            android:layout_height="600dp"
+                            android:layout_margin="40dp"
+                            android:maxScaleValue ="30"
+                            minScaleValue = "12"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewPeopl3"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="4dp"
+                app:cardBackgroundColor="@color/orange_inactive"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="7dp"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tin"
+                        android:id="@+id/Tin"
+                        android:layout_gravity="center_horizontal|top"
+                        android:textSize="30dp"
+                        android:layout_marginTop="30dp" />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hin"
-            android:id="@+id/Hin"
-            android:layout_gravity="center_horizontal|top"
-            android:textSize="30dp"
-            android:layout_marginTop="110dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hin"
+                        android:id="@+id/Hin"
+                        android:layout_gravity="center_horizontal|top"
+                        android:textSize="30dp"
+                        android:layout_marginTop="110dp" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewPeopl4"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="4dp"
+            app:cardBackgroundColor="@color/orange_inactive"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="7dp"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="ГАЗ"
+                    android:textColor="@color/bar_title_selected_color"
+                    android:textSize="24sp" />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tout"
-            android:id="@+id/Tout"
-            android:layout_gravity="center_horizontal|top"
-            android:textSize="30dp"
-            android:layout_marginTop="190dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tout"
+                    android:id="@+id/Tout"
+                    android:layout_gravity="center_horizontal|top"
+                    android:textSize="30dp"
+                    android:layout_marginTop="40dp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewPeopl5"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="4dp"
+                app:cardBackgroundColor="@color/orange_inactive"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="7dp"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="Вода"
+                        android:textColor="@color/bar_title_selected_color"
+                        android:textSize="24sp" />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hout"
-            android:id="@+id/Hout"
-            android:layout_gravity="center_horizontal|top"
-            android:textSize="30dp"
-            android:layout_marginTop="270dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hout"
+                        android:id="@+id/Hout"
+                        android:layout_gravity="center_horizontal|top"
+                        android:textSize="30dp"
+                        android:layout_marginTop="40dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tin1"
-            android:id="@+id/Tin1"
-            android:layout_gravity="center_horizontal|top"
-            android:textSize="30dp"
-            android:layout_marginTop="350dp" />
+                </RelativeLayout>
 
+            </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tin2"
-            android:id="@+id/Tin2"
-            android:layout_gravity="center_horizontal|top"
-            android:textSize="30dp"
-            android:layout_marginTop="430dp" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                app:cardBackgroundColor="@color/grey_bg_light">
 
-    </FrameLayout>
+            </androidx.cardview.widget.CardView>
 
-</RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

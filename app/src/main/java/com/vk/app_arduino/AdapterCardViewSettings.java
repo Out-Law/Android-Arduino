@@ -48,7 +48,7 @@ class AdapterCardViewSettings extends RecyclerView.Adapter<AdapterCardViewSettin
                 case "Напоминание":
                     dialog.setContentView(R.layout.dialog_notification_settings);
                     dialog.findViewById(R.id.OK_button).setOnClickListener(v -> dialog.dismiss());
-                    dialog.findViewById(R.id.Cancle_button).setOnClickListener(v -> dialog.dismiss());
+                   // dialog.findViewById(R.id.Cancle_button).setOnClickListener(v -> dialog.dismiss());
                     dialog.show();
                     break;
                 case "Виджеты":

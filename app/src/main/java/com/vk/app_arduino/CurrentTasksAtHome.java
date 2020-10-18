@@ -1,6 +1,11 @@
 package com.vk.app_arduino;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -12,8 +17,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,8 +31,12 @@ import com.hadiidbouk.charts.ChartProgressBar;
 import com.hadiidbouk.charts.OnBarClickedListener;
 
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class CurrentTasksAtHome<view> extends Fragment {
@@ -34,22 +46,7 @@ public class CurrentTasksAtHome<view> extends Fragment {
     private ThermometerView thermometerTv;
 
 
-    private static final int REQUEST_ENABLE_BT = 1;
 
-    /* renamed from: AD */
-    public TextView f18AD;
-    public TextView Hin;
-    public TextView Hout;
-    FrameLayout OsnovPanel;
-    public TextView Tin;
-    public TextView Tout;
-    public ImageView blue;
-    BluetoothAdapter bluetoothAdapter;
-    public TextView chasek;
-    public TextView chasi;
-    public TextView co2;
-    int count = 0;
-    public TextView datext;
 
     public static CurrentTasksAtHome newInstance(){
         return new CurrentTasksAtHome();
