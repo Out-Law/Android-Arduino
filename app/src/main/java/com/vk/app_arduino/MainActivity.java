@@ -130,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
                 T = Integer.parseInt (paket[2]);
                 Ht = Integer.parseInt (paket[3]);
                 Tt = Integer.parseInt (paket[4]);
-                float G = (float)H * 7 + 16;
-                thermometerTv.setValueAndStartAnim(G);
+               // float G = (float)H * 7 + 16;
+                //thermometerTv.setValueAndStartAnim(G);
                 if(H<20 || H>25){//температура
                     dialog_temperature.setContentView(R.layout.dialog_notification_settings);
                     dialog_temperature.findViewById(R.id.OK_button).setOnClickListener(v -> dialog_temperature.dismiss());
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         ButPanel = (ScrollView) findViewById(R.id.ScrolViewSettings);
         BB = (CardView) findViewById(R.id.cardViewBB);
 
-        thermometerTv = findViewById(R.id.tv_thermometer);
+        //thermometerTv = findViewById(R.id.tv_thermometer);
 
         dialog_water = new Dialog(MainActivity.this);
         dialog_temperature = new Dialog(MainActivity.this);
@@ -186,22 +186,22 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<BarData> dataList = new ArrayList<>();
 
-        BarData data = new BarData("Sep", 3.4f, "3.4€");
+        BarData data = new BarData("Sep", 7.4f, "23.4C");
         dataList.add(data);
 
-        data = new BarData("Oct", 8.0f, "8.0€");
+        data = new BarData("Oct", 6.8f, "21.8C");
         dataList.add(data);
 
-        data = new BarData("Nov", 1.8f, "1.8€");
+        data = new BarData("Nov", 5.5f, "20.5C");
         dataList.add(data);
 
-        data = new BarData("Dec", 7.3f, "7.3€");
+        data = new BarData("Dec", 5.3f, "20.3С");
         dataList.add(data);
 
-        data = new BarData("Jan", 6.2f, "6.2€");
+        data = new BarData("Jan", 4.5f, "19.5С");
         dataList.add(data);
 
-        data = new BarData("Feb", 3.3f, "3.3€");
+        data = new BarData("Feb", 4.3f, "19.3С");
         dataList.add(data);
 
         mChart = (ChartProgressBar) findViewById(R.id.ChartProgressBar);

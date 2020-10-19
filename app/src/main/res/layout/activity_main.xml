@@ -125,44 +125,6 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewPeopl"
-                android:layout_width="match_parent"
-                android:layout_height="700dp"
-                android:layout_margin="4dp"
-                app:cardBackgroundColor="@color/orange_inactive"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="7dp"
-                app:cardUseCompatPadding="true">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary">
-
-                    <LinearLayout
-                        android:id="@+id/linearLayout2"
-                        android:layout_width="match_parent"
-                        android:layout_height="600dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="16dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.biansemao.widget.ThermometerView
-                            android:id="@+id/tv_thermometer"
-                            android:layout_width="match_parent"
-                            android:layout_height="600dp"
-                            android:layout_margin="40dp"
-                            android:maxScaleValue ="30"
-                            minScaleValue = "12"/>
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewPeopl3"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
